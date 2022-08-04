@@ -2,51 +2,108 @@
 //
 
 #include <iostream>
+#include<string>
 #include <conio.h>
+
+enum Estados {
+    S_O,
+    S_I,
+    S_II,
+    S_III
+};
+
+enum Estados estado = S_O;
+
+int lengthOfArray(const char* arr)
+{
+    int size = 0;
+
+    while (*arr) {
+        size += 1;
+        arr += 1;
+    }
+
+    return size;
+}
 
 int main()
 {
-    FILE* arq;
+    FILE* arq1;
+    FILE* arq2;
+    FILE* arq3;
     char Linha[100];
     char* result;
     int i;
 
-    arq = fopen("teste.txt", "rt");
+    arq1 = fopen("teste.txt", "rt");
+    FILE arr[] = { arq1 };
 
-    if (arq == NULL) {
+    if (arq1 == NULL) {
         std::cout << "Problemas na abertura do arquivo" << '\n';
         return 0;
     }
 
     i = 1;
-    if (arq) {
-        while (!feof(arq))
+    if (arq1) {
+        while (!feof(arq1))
         {
-            // Lê uma linha (inclusive com o '\n')
-            result = fgets(Linha, 100, arq);  // o 'fgets' lê até 99 caracteres ou até o '\n'
-            std::cout << result << '\n';
+            result = fgets(Linha, 100, arq1);
             // Se foi possível ler
             if (result) {
-                //printf("Linha %d : %s", i, Linha);
-                std::cout << "Linha" << i << ":" << Linha << '\n';
-            }
+                //TODO HERE:
+                long lenResult = lengthOfArray(result);
+                for (int j = 0; j < (lenResult - 1); j++){
+                    switch (estado)
+                    {
+                    case S_O:
+                        if (result[j] == 'a')
+                        {
+                            estado = S_I;
+                        }
+                        break;
 
-            i++;
+                    case S_I:
+                        if (result[j] == 'b')
+                        {
+                            estado = S_II;
+                        }
+                        else
+                        {
+                            estado = S_III;
+                        }
+                        break;
+
+                    case S_II:
+                        if (result[j] == 'b')
+                        {
+                            estado = S_O;
+                        }
+                        else
+                        {
+                            estado = S_III;
+                        }
+                        break;
+
+                    default:
+                        estado = S_III;
+                        break;
+                    }
+                }
+
+                if (estado == S_O)
+                {
+                    std::cout << "|PERTENCE| " << "Input: " << Linha;
+                }
+                else
+                {
+                    std::cout << "|NAO PERTENCE| " << "Input: " << Linha;
+                }
+
+            }
         }
-        fclose(arq);
-        return 1;
+        fclose(arq1);
+        return 0;
         
     }
-    return 1;
+    return 0;
 }
-
-// Executar programa: Ctrl + F5 ou Menu Depurar > Iniciar Sem Depuração
-// Depurar programa: F5 ou menu Depurar > Iniciar Depuração
-
-// Dicas para Começar: 
-//   1. Use a janela do Gerenciador de Soluções para adicionar/gerenciar arquivos
-//   2. Use a janela do Team Explorer para conectar-se ao controle do código-fonte
-//   3. Use a janela de Saída para ver mensagens de saída do build e outras mensagens
-//   4. Use a janela Lista de Erros para exibir erros
-//   5. Ir Para o Projeto > Adicionar Novo Item para criar novos arquivos de código, ou Projeto > Adicionar Item Existente para adicionar arquivos de código existentes ao projeto
-//   6. No futuro, para abrir este projeto novamente, vá para Arquivo > Abrir > Projeto e selecione o arquivo. sln
