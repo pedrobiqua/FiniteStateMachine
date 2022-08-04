@@ -1,4 +1,5 @@
-abbabb
+4
+abbabbccbbbb
 babababa
 bcacaaaa
 ac

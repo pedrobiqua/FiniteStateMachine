@@ -1,3 +1,4 @@
-abbaa
-babababa
-bcacaaaa
+3
+abbabba
+abc
+bbbbbbcc
