@@ -20,6 +20,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="teste.txt" />
+    <Text Include="arq3.txt" />
+    <Text Include="arq1.txt" />
+    <Text Include="arq2.txt" />
   </ItemGroup>
 </Project>

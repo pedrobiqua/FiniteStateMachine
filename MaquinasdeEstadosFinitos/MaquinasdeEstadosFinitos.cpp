@@ -28,82 +28,96 @@ int lengthOfArray(const char* arr)
 
 int main()
 {
-    FILE* arq1;
-    FILE* arq2;
-    FILE* arq3;
+    FILE* arq;
     char Linha[100];
     char* result;
     int i;
+    i = 0;
 
-    arq1 = fopen("teste.txt", "rt");
-    FILE arr[] = { arq1 };
-
-    if (arq1 == NULL) {
-        std::cout << "Problemas na abertura do arquivo" << '\n';
-        return 0;
-    }
-
-    i = 1;
-    if (arq1) {
-        while (!feof(arq1))
+    while (i < 3)
+    {
+        estado = S_O;
+        if (i == 0)
         {
-            result = fgets(Linha, 100, arq1);
-            // Se foi possível ler
-            if (result) {
-                //TODO HERE:
-                long lenResult = lengthOfArray(result);
-                for (int j = 0; j < (lenResult - 1); j++){
-                    switch (estado)
-                    {
-                    case S_O:
-                        if (result[j] == 'a')
-                        {
-                            estado = S_I;
-                        }
-                        break;
-
-                    case S_I:
-                        if (result[j] == 'b')
-                        {
-                            estado = S_II;
-                        }
-                        else
-                        {
-                            estado = S_III;
-                        }
-                        break;
-
-                    case S_II:
-                        if (result[j] == 'b')
-                        {
-                            estado = S_O;
-                        }
-                        else
-                        {
-                            estado = S_III;
-                        }
-                        break;
-
-                    default:
-                        estado = S_III;
-                        break;
-                    }
-                }
-
-                if (estado == S_O)
-                {
-                    std::cout << "|PERTENCE| " << "Input: " << Linha;
-                }
-                else
-                {
-                    std::cout << "|NAO PERTENCE| " << "Input: " << Linha;
-                }
-
-            }
+            std::cout << "Arquivo arq1.txt" << '\n';
+            arq = fopen("arq1.txt", "rt");
+        } else if (i == 1) {
+            std::cout << '\n' << "Arquivo arq2.txt" << '\n';
+            arq = fopen("arq2.txt", "rt");
+        } else {
+            std::cout << '\n' << "Arquivo arq3.txt" << '\n';
+            arq = fopen("arq3.txt", "rt");
         }
-        fclose(arq1);
-        return 0;
         
+
+        if (arq == NULL) {
+            std::cout << "Problemas na abertura do arquivo" << '\n';
+            return 0;
+        }
+
+        if (arq) {
+            while (!feof(arq))
+            {
+                result = fgets(Linha, 100, arq);
+                // Se foi possível ler
+                if (result) {
+                    //TODO HERE:
+                    long lenResult = lengthOfArray(Linha);
+                    for (int j = 0; j < (lenResult - 1); j++) {
+                        switch (estado)
+                        {
+                        case S_O:
+                            if (Linha[j] == 'a')
+                            {
+                                estado = S_I;
+                            }
+                            break;
+
+                        case S_I:
+                            if (Linha[j] == 'b')
+                            {
+                                estado = S_II;
+                            }
+                            else
+                            {
+                                estado = S_III;
+                            }
+                            break;
+
+                        case S_II:
+                            if (Linha[j] == 'b')
+                            {
+                                estado = S_O;
+                            }
+                            else
+                            {
+                                estado = S_III;
+                            }
+                            break;
+
+                        default:
+                            estado = S_III;
+                            break;
+                        }
+                    }
+
+                    if (estado == S_O)
+                    {
+                        std::cout << "|PERTENCE| " << "Input: " << Linha;
+                    }
+                    else
+                    {
+                        std::cout << "|NAO PERTENCE| " << "Input: " << Linha;
+                    }
+                    estado = S_O;
+
+                }
+            }
+            fclose(arq);
+
+        }
+        i++;
     }
+    
     return 0;
 }

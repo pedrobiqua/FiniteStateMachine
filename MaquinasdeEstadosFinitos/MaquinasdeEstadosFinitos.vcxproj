@@ -130,7 +130,9 @@
     <ClCompile Include="MaquinasdeEstadosFinitos.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="teste.txt" />
+    <Text Include="arq1.txt" />
+    <Text Include="arq2.txt" />
+    <Text Include="arq3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
