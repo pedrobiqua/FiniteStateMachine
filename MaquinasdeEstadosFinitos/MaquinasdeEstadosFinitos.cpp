@@ -1,6 +1,6 @@
 //Estudante : Pedro Bianchini de Quadros
 /*
-											ENUNCIADO:
+	ENUNCIADO:
 	Para  obter  os  pontos  relativos  a  este  trabalho,  você  deverá  criar  um  programa,  utilizando  a
 linguagem  Python, C, ou C++.  Este  programa,  quando  executado,  irá  determinar  se  uma  string de
 entrada  faz  parte  da  linguagem  𝐿    definida  por  𝐿 = {𝑥 | 𝑥 ∈
