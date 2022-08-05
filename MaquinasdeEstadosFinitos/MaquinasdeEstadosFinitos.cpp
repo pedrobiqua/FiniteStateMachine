@@ -29,6 +29,8 @@ testes criado pelo próprio professor.
 
 #include <iostream>
 
+int lengthOfArray(const char* arr);
+
 enum Estados {
 	S_O,
 	S_I,
@@ -39,42 +41,61 @@ enum Estados {
 
 enum Estados estado = S_O;
 
-int lengthOfArray(const char* arr)
-{
-	int size = 0;
-
-	while (*arr) {
-		size += 1;
-		arr += 1;
-	}
-
-	return size;
-}
-
 int main()
 {
 	FILE* arq;
 	char Linha[100];
 	char* result;
+	int num_txt;
 	int i;
 	i = 0;
 
-	while (i < 3)
+	//Quantidade de arquivos a serem análisados.
+	num_txt = 3;
+
+	while (i < num_txt)
 	{
 		estado = NUMBER;
+		/*
+			Para adicionar um novo arquivo basta adicionar um novo else if
+			E atualizar a variavel (num_txt) para o número de arquivos textos atuais
+
+			-- No envio da ativida já vão estar a disposição 3 arquivos de texto.
+
+			else if (i == 3) 
+			{
+				std::cout << '\n' << '\n' << "Arquivo arq4.txt" << '\n';
+				arq = fopen("arq4.txt", "rt");
+			}
+		*/
+
 		//Verefica qual arquivo vai ser aberto
 		if (i == 0)
 		{
 			std::cout << "Arquivo arq1.txt" << '\n';
 			arq = fopen("arq1.txt", "rt");
 		}
-		else if (i == 1) {
+		else if (i == 1) 
+		{
 			std::cout << '\n' << '\n' << "Arquivo arq2.txt" << '\n';
 			arq = fopen("arq2.txt", "rt");
 		}
-		else {
+		else if (i == 2)
+		{
 			std::cout << '\n' << '\n' << "Arquivo arq3.txt" << '\n';
 			arq = fopen("arq3.txt", "rt");
+		}
+		/* Exemplo de acrecimo de arquivo
+		else if (i == 3) 
+		{
+			std::cout << '\n' << '\n' << "Arquivo arq4.txt" << '\n';
+			arq = fopen("arq4.txt", "rt");
+		}
+		*/
+		else 
+		{
+			std::cout << '\n' << '\n' << "Arquivo arq3.txt" << '\n';
+			arq = fopen("inexistente.txt", "rt");
 		}
 
 
@@ -134,6 +155,7 @@ int main()
 					}
 				}
 
+				//Verefica se faz parte da linguagem 𝐿 = {𝑥 | 𝑥 ∈ {𝑎, 𝑏}∗ 𝑒 𝑐𝑎𝑑𝑎 𝑎 𝑒𝑚 𝑥 é 𝑠𝑒𝑔𝑢𝑖𝑑𝑜 𝑝𝑜𝑟 𝑝𝑒𝑙𝑜 𝑚𝑒𝑛𝑜𝑠 𝑑𝑜𝑖𝑠 𝑏 }
 				if (estado == S_O)
 				{
 					std::cout << "|PERTENCE| " << "Input: " << Linha;
@@ -153,4 +175,16 @@ int main()
 	}
 
 	return 0;
+}
+
+int lengthOfArray(const char* arr)
+{
+	int size = 0;
+
+	while (*arr) {
+		size += 1;
+		arr += 1;
+	}
+
+	return size;
 }
