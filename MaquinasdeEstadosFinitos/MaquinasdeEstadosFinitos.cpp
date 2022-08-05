@@ -60,7 +60,7 @@ int main()
 			Para adicionar um novo arquivo basta adicionar um novo else if
 			E atualizar a variavel (num_txt) para o número de arquivos textos atuais
 
-			-- No envio da ativida já vão estar a disposição 3 arquivos de texto.
+			-- No envio da atividade já vão estar a disposição 3 arquivos de texto.
 
 			else if (i == 3) 
 			{
