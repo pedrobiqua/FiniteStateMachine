@@ -9,9 +9,9 @@ entrada  faz  parte  da  linguagem  𝐿    definida  por  𝐿 = {𝑥 | 𝑥 �
 contendo várias strings. A primeira linha do arquivo indica quantas strings estão no arquivo de texto de
 entrada. As linhas subsequentes contém uma string por linha.  A seguir está um exemplo das linhas que
 podem existir em um arquivo de testes para o programa que você irá desenvolver:
-	3 
-	abbaba 
-	abababb 
+	3
+	abbaba
+	abababb
 	bbabbaaab
 
 	Neste  exemplo  temos  3  strings  de  entrada.  O  número  de  strings em  cada  arquivo  será
@@ -51,6 +51,7 @@ int main()
 	i = 0;
 
 	//Quantidade de arquivos a serem análisados.
+  //num_txt = 4;
 	num_txt = 3;
 
 	while (i < num_txt)
@@ -58,15 +59,9 @@ int main()
 		estado = NUMBER;
 		/*
 			Para adicionar um novo arquivo basta adicionar um novo else if
-			E atualizar a variavel (num_txt) para o número de arquivos textos atuais
+			E atualizar a variável (num_txt) para o número de arquivos textos atuais
 
-			-- No envio da atividade já vão estar a disposição 3 arquivos de texto.
-
-			else if (i == 3) 
-			{
-				std::cout << '\n' << '\n' << "Arquivo arq4.txt" << '\n';
-				arq = fopen("arq4.txt", "rt");
-			}
+			No envio da atividade já vão estar a disposição 3 arquivos de texto.
 		*/
 
 		//Verefica qual arquivo vai ser aberto
@@ -75,7 +70,7 @@ int main()
 			std::cout << "Arquivo arq1.txt" << '\n';
 			arq = fopen("arq1.txt", "rt");
 		}
-		else if (i == 1) 
+		else if (i == 1)
 		{
 			std::cout << '\n' << '\n' << "Arquivo arq2.txt" << '\n';
 			arq = fopen("arq2.txt", "rt");
@@ -85,17 +80,17 @@ int main()
 			std::cout << '\n' << '\n' << "Arquivo arq3.txt" << '\n';
 			arq = fopen("arq3.txt", "rt");
 		}
-		/* Exemplo de acrecimo de arquivo
-		else if (i == 3) 
+		/* Exemplo de acréscimo de arquivo, para usar basta retirar o comentário e atualizar a variável num_txt para 4
+		else if (i == 3)
 		{
 			std::cout << '\n' << '\n' << "Arquivo arq4.txt" << '\n';
 			arq = fopen("arq4.txt", "rt");
 		}
 		*/
-		else 
+		else
 		{
-			std::cout << '\n' << '\n' << "Arquivo arq3.txt" << '\n';
-			arq = fopen("inexistente.txt", "rt");
+			std::cout << '\n' << '\n' << "Arquivo nao existe" << '\n';
+			return 0;
 		}
 
 
@@ -110,7 +105,7 @@ int main()
 			result = fgets(Linha, 100, arq);
 			// Se foi possível ler
 			if (result) {
-				// Obtem o tamnho da linha para poder fazer o for
+				// Obtem o tamnho da linha para poder fazer o for e analisar char por char
 				long lenResult = lengthOfArray(Linha);
 				for (int j = 0; j < (lenResult - 1); j++) {
 					//Aplicação da lógica
