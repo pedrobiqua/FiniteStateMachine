@@ -30,6 +30,7 @@ testes criado pelo próprio professor.
 #include <iostream>
 
 int lengthOfArray(const char* arr);
+void printStringWithoutBreak(const char* arr);
 
 enum Estados {
 	S_O,
@@ -38,7 +39,6 @@ enum Estados {
 	S_III,
 	NUMBER
 };
-
 enum Estados estado = S_O;
 
 int main()
@@ -51,7 +51,7 @@ int main()
 	i = 0;
 
 	//Quantidade de arquivos a serem análisados.
-  //num_txt = 4;
+	//num_txt = 4;
 	num_txt = 3;
 
 	while (i < num_txt)
@@ -67,29 +67,25 @@ int main()
 		//Verefica qual arquivo vai ser aberto
 		if (i == 0)
 		{
-			std::cout << "Arquivo arq1.txt" << '\n';
 			arq = fopen("arq1.txt", "rt");
 		}
 		else if (i == 1)
 		{
-			std::cout << '\n' << '\n' << "Arquivo arq2.txt" << '\n';
 			arq = fopen("arq2.txt", "rt");
 		}
 		else if (i == 2)
 		{
-			std::cout << '\n' << '\n' << "Arquivo arq3.txt" << '\n';
 			arq = fopen("arq3.txt", "rt");
 		}
 		/* Exemplo de acréscimo de arquivo, para usar basta retirar o comentário e atualizar a variável num_txt para 4
 		else if (i == 3)
 		{
-			std::cout << '\n' << '\n' << "Arquivo arq4.txt" << '\n';
 			arq = fopen("arq4.txt", "rt");
 		}
 		*/
 		else
 		{
-			std::cout << '\n' << '\n' << "Arquivo nao existe" << '\n';
+			std::cout << "Arquivo nao existe" << '\n';
 			return 0;
 		}
 
@@ -141,7 +137,6 @@ int main()
 						break;
 
 					case NUMBER:
-						std::cout << "|QUANTIDADE DE INPUTS| " << "N: " << Linha << '\n';
 						break;
 
 					default:
@@ -153,22 +148,22 @@ int main()
 				//Verefica se faz parte da linguagem 𝐿 = {𝑥 | 𝑥 ∈ {𝑎, 𝑏}∗ 𝑒 𝑐𝑎𝑑𝑎 𝑎 𝑒𝑚 𝑥 é 𝑠𝑒𝑔𝑢𝑖𝑑𝑜 𝑝𝑜𝑟 𝑝𝑒𝑙𝑜 𝑚𝑒𝑛𝑜𝑠 𝑑𝑜𝑖𝑠 𝑏 }
 				if (estado == S_O)
 				{
-					std::cout << "|PERTENCE| " << "Input: " << Linha;
+					printStringWithoutBreak(Linha);
+					std::cout << ": pertence" << '\n';
+					
 				}
 				else if ((estado == S_I) || (estado == S_II) || (estado == S_III))
 				{
-					std::cout << "|NAO PERTENCE| " << "Input: " << Linha;
+					printStringWithoutBreak(Linha);
+					std::cout << ": nao pertence" << '\n';
+
 				}
-
 				estado = S_O;
-
 			}
 		}
 		fclose(arq);
-
 		i++;
 	}
-
 	return 0;
 }
 
@@ -182,4 +177,15 @@ int lengthOfArray(const char* arr)
 	}
 
 	return size;
+}
+
+void printStringWithoutBreak(const char* arr)
+{
+	for (size_t i = 0; i < lengthOfArray(arr); i++)
+	{
+		if (arr[i] != '\n')
+		{
+			std::cout << arr[i];
+		}
+	}
 }
