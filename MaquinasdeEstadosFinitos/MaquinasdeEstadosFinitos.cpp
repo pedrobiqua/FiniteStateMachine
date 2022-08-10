@@ -48,6 +48,8 @@ int main()
 	char* result;
 	int num_txt;
 	int i;
+	int counter;
+	int numberLines;
 	i = 0;
 
 	//Quantidade de arquivos a serem análisados.
@@ -56,6 +58,8 @@ int main()
 
 	while (i < num_txt)
 	{
+		numberLines = -1;
+		counter = 0;
 		estado = NUMBER;
 		/*
 			Para adicionar um novo arquivo basta adicionar um novo else if
@@ -111,6 +115,11 @@ int main()
 						if (Linha[j] == 'a')
 						{
 							estado = S_I;
+						} 
+						// Se não for do alfabeto Σ={𝑎,𝑏,𝑐} , vai mostrar ao usuario que não pertence.
+						else if ((Linha[j] != 'a') && (Linha[j] != 'b') && (Linha[j] != 'c')) 
+						{
+							estado = S_III;
 						}
 						break;
 
@@ -137,6 +146,7 @@ int main()
 						break;
 
 					case NUMBER:
+						numberLines = std::strtol (result, NULL, 10);
 						break;
 
 					default:
@@ -159,7 +169,12 @@ int main()
 
 				}
 				estado = S_O;
+				if (counter >= numberLines)
+				{
+					break;
+				}
 			}
+			counter++;
 		}
 		fclose(arq);
 		i++;
