@@ -1,5 +1,5 @@
 4
-abbgt
+abb
 abbabbccbbbb
 babababa
 bcacaaaa
